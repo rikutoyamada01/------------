@@ -1,5 +1,5 @@
 /* アルゴリズムとデータ構造B
-   3I ○番 氏名 提出日：
+   3I 50番 山田陸斗 提出日：2025/10/1
    #1 ポインタの復習 */
 
 #include <stdio.h>
@@ -14,9 +14,6 @@ int func(int i)
 void swap(int *a, int *b)
 {
     int tmp;
-
-
-
 }
 
 int main() {
@@ -31,7 +28,7 @@ int main() {
 
         printf("設問１：変数aのアドレス，値をポインタpを用いて出力\n");
         // 設問１：pが指す変数のアドレス，pが指す変数の値をpを用いて出力
-
+        printf("p: %p, *p: %d\n", p, *p);
     }
 
     {
