@@ -85,6 +85,7 @@ int main() {
 
         printf("設問７：関数ポインタp_funcを用いて，関数funcのアドレスを出力，funを呼び出す\n");
         // 設問７：関数ポインタp_funcを用いて，関数funcのアドレスを出力，funを呼び出す
+        printf("address(func(5)): %p, func(5): %d\n", p_func, (*p_func)(5));
 
     }
 
