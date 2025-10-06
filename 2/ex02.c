@@ -27,6 +27,9 @@ int main() {
 
     printf("設問４：構造体ポインタ p を用いて，構造体変数 a の情報を設問３と同様に出力\n");
     // 設問４：構造体ポインタ p を用いて，構造体変数 a の情報を設問３と同様に出力
+    struct body* p;
+    p = &a;
+    printf("氏名： %s, 身長： %d cm, 体重： %3.1f kg\n", p->name, p->height, p->weight);
 
     /*
     設問５：struct body 型の構造体配列 b (要素数3) を宣言し，
