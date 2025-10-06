@@ -1,5 +1,5 @@
 /* アルゴリズムとデータ構造B
-   3I ○番 氏名 提出日：
+   3I 50番 山田陸斗 提出日：2025/10/6
    #2 構造体の復習 */
 
 #include <stdio.h>
@@ -7,11 +7,23 @@
 
 int main() {
     // 設問１：氏名(name)，身長(height)，体重(weight)を管理するための構造体を宣言
+    struct body {
+        char name[20];
+        int height;
+        double weight;
+    };
 
     // 設問２：構造体変数 a を宣言し，各メンバに "高専太郎", 174, 64.2 を代入
+    struct body a;
+    strcpy(a.name, "高専太郎");
+    a.height = 174;
+    a.weight = 64.2;
+    
+
 
     printf("設問３：aを用いて「氏名：高専太郎，身長：174 cm 体重：64.2 kg」と出力\n");
     // 設問３：aを用いて「氏名：高専太郎，身長：174 cm 体重：64.2 kg」と出力
+    printf("氏名： %s, 身長： %d cm, 体重： %3.1f kg\n", a.name, a.height, a.weight);
 
     printf("設問４：構造体ポインタ p を用いて，構造体変数 a の情報を設問３と同様に出力\n");
     // 設問４：構造体ポインタ p を用いて，構造体変数 a の情報を設問３と同様に出力
