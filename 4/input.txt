@@ -1,0 +1,7 @@
+6
+Programming	Dennis	1978	10	2500
+Algorithm	Thomas	2009	15	6800
+Language	Brian	2023	2	9500
+Visualization	Donald	1968	8	5500
+Mathematics	Robert	2008	5	4800
+Research	Dennis	1998	12	3700
