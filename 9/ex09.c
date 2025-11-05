@@ -103,5 +103,142 @@ int main(void) {
    （データが正しく入追加・取り出すことができる，
    キューが FULL / EMPTY の場合に，それぞれエラー表示がされる，
    front / rear が配列の範囲を超えたとき，0 に戻ることを確認）
-
+    ?Enque(1) or Deque(0) = 1
+?Enque x = 53
+        53  <-rear
+ front->0        
+        0        
+        0        
+        0        
+?Continue(1) or Quit(0) = 1
+?Enque(1) or Deque(0) = 1
+?Enque x = 52352
+        53  <-rear
+        52352        
+ front->0        
+        0        
+        0        
+?Continue(1) or Quit(0) = 1
+?Enque(1) or Deque(0) = 1
+?Enque x = 2
+        53  <-rear
+        52352        
+        2        
+ front->0        
+        0        
+?Continue(1) or Quit(0) = 1
+?Enque(1) or Deque(0) = 1
+?Enque x = 52
+        53  <-rear
+        52352        
+        2        
+        52        
+ front->0        
+?Continue(1) or Quit(0) = 1
+?Enque(1) or Deque(0) = 1
+?Enque x = 75
+ front->53  <-rear
+        52352        
+        2        
+        52        
+        75        
+?Continue(1) or Quit(0) = 2
+?Enque(1) or Deque(0) = 1
+?Enque x = 13
+Queue full
+ front->53  <-rear
+        52352        
+        2        
+        52        
+        75        
+?Continue(1) or Quit(0) = 1
+?Enque(1) or Deque(0) = 0
+53 was picked
+ front->0        
+        52352  <-rear
+        2        
+        52        
+        75        
+?Continue(1) or Quit(0) = 1
+?Enque(1) or Deque(0) = 0
+52352 was picked
+ front->0        
+        0        
+        2  <-rear
+        52        
+        75        
+?Continue(1) or Quit(0) = 1
+?Enque(1) or Deque(0) = 1
+?Enque x = 432
+        432        
+ front->0        
+        2  <-rear
+        52        
+        75        
+?Continue(1) or Quit(0) = 1
+?Enque(1) or Deque(0) = 1
+?Enque x = 332
+        432        
+        332        
+ front->2  <-rear
+        52        
+        75        
+?Continue(1) or Quit(0) = 1
+?Enque(1) or Deque(0) = 1
+?Enque x = 42
+Queue full
+        432        
+        332        
+ front->2  <-rear
+        52        
+        75        
+?Continue(1) or Quit(0) = 1
+?Enque(1) or Deque(0) = 0
+2 was picked
+        432        
+        332        
+ front->0        
+        52  <-rear
+        75        
+?Continue(1) or Quit(0) = 1
+?Enque(1) or Deque(0) = 0
+52 was picked
+        432        
+        332        
+ front->0        
+        0        
+        75  <-rear
+?Continue(1) or Quit(0) = 1
+?Enque(1) or Deque(0) = 0
+75 was picked
+        432  <-rear
+        332        
+ front->0        
+        0        
+        0        
+?Continue(1) or Quit(0) = 1
+?Enque(1) or Deque(0) = 0
+432 was picked
+        0        
+        332  <-rear
+ front->0        
+        0        
+        0        
+?Continue(1) or Quit(0) = 1
+?Enque(1) or Deque(0) = 0
+332 was picked
+        0        
+        0        
+ front->0  <-rear
+        0        
+        0        
+?Continue(1) or Quit(0) = 1
+?Enque(1) or Deque(0) = 0
+Queue empty
+        0        
+        0        
+ front->0  <-rear
+        0        
+        0        
+?Continue(1) or Quit(0) = 0
 */
