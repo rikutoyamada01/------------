@@ -1,45 +1,41 @@
 ﻿#include <stdio.h>
 
-// スタックと付随するアルゴリズムはex09.cで実装したものを用いて、修正しても良い
 #define MAX 5
 
 // 問題１　正しくキューを構造体定義する
-/*
-int que[MAX]; // キュー本体
-int front, rear; // 先頭要素，末尾要素の位置
-int num; // 現在のデータ数
-*/
-struct Que {
 
-	
-	
+struct Que {
+	int que[MAX]; // キュー本体
+	int front, rear; // 先頭要素，末尾要素の位置
+	int num; // 現在のデータ数
 	// 来週もう少しマニアな実装を追加します（試験範囲外）
 };
 
 // 問題２-1　（Javaになると不要な技術ですが）C言語で複数のオブジェクト（もの、この場合はキュー）を扱う仕掛けに慣れておこう
 int Enque(struct Que *q, int x) {
 	// 問題２-2 構造体ポインタ q のメンバとして、numやqueを扱う
-	if (   num < MAX) {
-		   que[   rear++] = x;
-		if (   rear == MAX)
-			   rear = 0;
-		   num++;
-	} else
+	if (q->num >= MAX) {
 		return -1;
+	}
+	q->que[q->rear++] = x;
+	if (q->rear == MAX)
+		q->rear = 0;
+	q->num++;
 
-	return 0;
+	return x;
 }
 
 int Deque(struct Que *q) {
 	// 問題２-2 構造体ポインタ q のメンバとして、numやqueを扱う
-	if (q->       > 0) {
-		int tmp = q->      [q->       ++];
-		if (q->        == MAX)
-			q->        = 0;
-		q->       --;
-		return tmp;
-	} else
+	if (q->num <= 0) {
 		return -1;
+	}
+	int tmp = q->que[q->front];
+	q->que[q->front++] = 0;
+	if (q->front == MAX)
+		q->front = 0;
+	q->num--;
+	return tmp;
 }
 // 修正不要
 void Display(struct Que *q) {
@@ -75,14 +71,14 @@ int main() {
 		printf("?Enque x = ");
 		scanf("%d", &x);
 		if (x == 0)           //問題３-1　ループを抜け出る
-			       ;
+			break;
 		count += 1;
 		if (count % 2 == 1) { //問題３-2　奇数のとき
-			
+			x = Enque(&que1, x);
 			if (x == -1)
 				printf("que1 full\n");
 		} else {              //問題３-3　偶数のとき
-			
+			x = Enque(&que2, x);
 			if (x == -1)
 				printf("que2 full\n");
 		}
@@ -95,7 +91,7 @@ int main() {
 	int total = 0;
 	// while (input_number != -1) {
 	//問題３-4　que1にデータがある間、繰り返す
-	while (que1.        != 0) {
+	while (que1.num != 0) {
 		x = Deque(&que1);
 		if (x != -1) {
 			printf("%d\n", x);
@@ -105,7 +101,7 @@ int main() {
 	x = 0;
 	while (x != -1) {     // que1の場合と同じ条件でもOK
 	    //問題３-5　que2からデータを取り出す（デキュー）
-		x =             ;
+		x = Deque(&que2);
 		if (x != -1) {
 			printf("%d\n", x);
 			total += x;
