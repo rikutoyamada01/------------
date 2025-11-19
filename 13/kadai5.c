@@ -15,11 +15,11 @@ void TracePQ(struct Element *p, struct Element *q) {  //試験レベルでは、
     int i = 0;
     for (r = head; r != NULL; r = r->next, i++) {
         printf("%6d: %p %6d %p", i, r, r->data, r->next);
-        if (                   )
+        if (r == p && r == q)
             printf(" <- p, q\n");
-        else if (              )
+        else if (r == p)
             printf(" <- p\n");
-        else if (              )
+        else if (r == q)
             printf(" <- q\n");
         else
             printf("\n");
@@ -37,7 +37,7 @@ void Display(struct Element *q) {  //試験レベルでは、引数を考える�
             printf("%6d: %p %6d %p", i, p, p->data, p->next);
 
             // 問題２
-            if (          )
+            if (p == q)
                 printf(" <- edited node\n");
             else
                 printf("\n");
@@ -55,7 +55,7 @@ void InsertFront(int x) {
 
     // 問題２
     printf("先頭にノードを挿入した後のリスト\n");
-    Display(       ); // Display の呼び出し
+    Display(head); // Display の呼び出し
 }
 
 int Remove(int x) {
@@ -64,7 +64,7 @@ int Remove(int x) {
     for (i = 0, p = q = head; p != NULL; i++, q = p, p = p->next) {
 
         // 問題１ リスト全体＋p, q の表示
-                  (p, q);
+        TracePQ(p, q);
 
         if (p->data == x) {
             if (p == head) {
@@ -77,7 +77,7 @@ int Remove(int x) {
 
             // 問題２
             printf("ノードを削除した後のリスト\n");
-            Display(       ); // Display の呼び出し
+            Display(p); // Display の呼び出し
 
             return i;
         }
@@ -93,7 +93,7 @@ void InsertbyIndex(int index, int x) {
         struct Element *p, *q;
         for (i = 0, p = q = head; i < index && p->next != NULL; i++, q = p, p = p->next) {
            // 問題１ リスト全体＋p, q の表示
-           TracePQ(        );
+           TracePQ(p, q);
         }
 
         // リスト全体＋p, q の表示
@@ -113,7 +113,7 @@ void InsertbyIndex(int index, int x) {
 
         // 問題２
         printf("index番目にノードを挿入した後のリスト\n");
-        Display(       ); // Display の呼び出し
+        Display(r); // Display の呼び出し
     }
 }
 
