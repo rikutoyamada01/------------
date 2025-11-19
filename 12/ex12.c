@@ -1,5 +1,5 @@
 /* アルゴリズムとデータ構造B
-   3I ○番 氏名 提出日：
+   3I 50番 氏名 山田陸斗 提出日：2025年11月19日
    #12 線形リストの操作
    設問 Initialize(), InsertFront(), Remove(), InsertbyIndex(), Search() を作成する */
 
@@ -14,25 +14,31 @@ struct Element *head;
 
 // 設問１：リストの基本処理のための関数を作成
 void Initialize() {
-
+    head = NULL;
 }
 
 void InsertFront(int x) {
-    struct Element   p;
-    p = malloc(sizeof(          ));
-    p->data =         ;
-    p->next =         ;
-    head =            ;
+    struct Element *p;
+    p = malloc(sizeof(struct Element));
+    p->data = x;
+    p->next = head;
+    head = p;
 }
 
 int Remove(int x) {
     int i;                    // i利用
     struct Element *p, *q;    // q利用
     // 削除する要素が何番目にあるかを探索する
-    for (;;) {
+    for (p = q = head, i = 0; p != NULL; q = p, p = p->next, i++) {
         if (p->data = x) { // 見つかったとき
             // 場合分けに注意して、要素を削除し、iを返す
-            
+            if (p = head) {
+                head = p->next;
+                free(p);
+            } else {
+                q->next = p->next;
+                free(p);
+            }
             return i;
         }
     }
@@ -42,24 +48,24 @@ int Remove(int x) {
 
 void InsertbyIndex(int index, int x) {
     // リストが空、または、indexが0のとき、先頭に追加 => InsertFront()利用
-    if (head ==           || index ==           )
-        InsertFront(        );
+    if (head == NULL || index == 0)
+        InsertFront(x);
     else {
         int i;                    // i利用
         struct Element *p, *q;    // q利用
         // 追加する要素（pの次に挿入を想定）までカウントする continue文を利用するとよい
-        for (;;) ;
+        for (p = q = head, i = 0; (p->next != NULL && i < index); q = p, p = p->next, i++) ;
         // rに新しい要素を生成
         struct Element *r;
-        r =                        ;
+        r = malloc(sizeof(struct Element));
         r->data = x;
         // 間に挿入と、末尾に挿入を場合分け
-        if (                  ) {
-            
-            
+        if (p->next != NULL) {
+            r->next = p->next;
+            p->next = r;
         } else {
-            
-            // コメント 末尾に挿入はpがNULLであると見ると、実は場合分け不要（ループの継続条件は変わる）
+            p->next = r;
+            r->next = NULL;
         }
     }
 
@@ -84,7 +90,8 @@ void Display() {
 
 int main(void) {
     int menu = 1;
-    // 設問２：線形リストの初期化（関数の呼び出し）
+    // 設問２：線形リストの初期化（関数の呼び出し)
+    Initialize();
 
     while (menu) {
         printf("list process ?InsertFront(1), InsertbyIndex(2), Search(3) or Remove(0) = ");
@@ -93,7 +100,8 @@ int main(void) {
             int x;
             printf("挿入するノードのデータを入力してください：");
             scanf("%d", &x);
-            // 設問３：ノードの追加を実行（関数の呼び出し）
+            // 設問３：ノードの追加を実行（関数の呼び出し)
+            InsertFront(x);
 
         } else if (menu == 2) { // ノードの挿入
             int x, index;
@@ -108,6 +116,7 @@ int main(void) {
             printf("挿入するノードのデータを入力してください：");
             scanf("%d", &x);
             // 設問４：ノードの挿入を実行（関数の呼び出し）
+            InsertbyIndex(index, x);
 
         } else if (menu == 3) { // ノードの探索
             int x, index;
