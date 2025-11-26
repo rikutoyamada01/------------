@@ -115,20 +115,21 @@ void InsertbyIndex(int index, int x) {
 // 問題１－１　末尾に挿入 ※この処理（アルゴリズム）が必要かは要検討（データ構造に工夫の余地あり）
 void InsertRear(int x) {
     if (head == NULL)     // 問題１－１-1　リストが空のとき、先頭に挿入
-                        ;
+    InsertFront(x);
+
     else {
         struct Element *p, *r;  // qは不要
 
-        for (p = head;           != NULL; p = p->next) continue; // 問題１－１-2　末尾ノードを探す
+        for (p = head; p->next != NULL; p = p->next) continue; // 問題１－１-2　末尾ノードを探す
 
         r = malloc(sizeof(struct Element));
         r->data = x;
         // 問題１－１-3　正しくリンクする
-         ->next =     ;
-         ->next = NULL;
+        p->next = r;
+        r->next = NULL;
 
         // 問題１－１-4　正しく追加ノードを表示する
-        Display(    );
+        Display(r);
     }
 }
 // 問題１－２　先頭を削除
@@ -136,35 +137,35 @@ void RemoveFront() {        // 戻り値の型は要検討
     if (head != NULL) {     // リストが空でないときのみ処理する
         struct Element *p;  // あとでfree()するために利用
         p = head;
-            = head->next;   // 問題１－２-1　正しくリンクする
+        head = head->next;   // 問題１－２-1　正しくリンクする
 
-        free(    );         // 問題１－２-2　削除する要素をfree()する
+        free(p);         // 問題１－２-2　削除する要素をfree()する
 
-        // Display(head);
+        Display(head);
     }
 }
 // 問題１－３　末尾を削除   ※単方向リストの不便さを体感する演習（双方向リストは自習）
 void RemoveRear() {                // 戻り値の型は要検討
     if (head != NULL) {            // リストが空でないときのみ処理する
         if (head->next == NULL)    // 問題１－３-1　ノードが一つだけであれば先頭を削除
-                           ;
+            RemoveFront();
         else {
             struct Element *p, *q; // pは実質、free()のために利用
             for (p = q = head; p->next != NULL; q = p, p = p->next) continue;
             // 問題１－３-1　正しくリンクする
-            q->next =          ;
+            q->next = NULL;
             // 問題１－３-2　削除する要素をfree()する
-            free(    );
-            // Display(q);
+            free(p);
+            Display(q);
         }
     }
 }
 // 問題２　リストを空にする ※初期化とは異なる
 void Clear() {
-    while (                      ) {  // 問題２-1　リストが空になるまで
+    while (head != NULL) {  // 問題２-1　リストが空になるまで
         printf("     free data:%d, address:%p\n", head->data, head);
         // 問題２-2　先頭を削除
-                     ;
+        RemoveFront();
     }
 }
 
@@ -249,17 +250,14 @@ int main() {
     printf("挿入するノードのデータ = %d\n", x);
     InsertbyIndex(3, x);
 
-    // Display(NULL);
 
     printf("----------\n");
     printf("RemoveFront() で先頭のノードを削除\n");
     RemoveFront();
-    Display(NULL);
 
     printf("----------\n");
     printf("RemoveRear() で末尾のノードを削除\n");
     RemoveRear();
-    Display(NULL);
 
     printf("----------\n");
     printf("Clear() で全ノードを削除\n");
@@ -267,7 +265,6 @@ int main() {
     printf("\n");
     printf("----------\n");
     printf("head = %p\n", head);
-    // Display(NULL);
 
     return 0;
 }
