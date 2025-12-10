@@ -5,7 +5,7 @@
 
 struct Element {
     // 問題１-1　正しいデータ型で定義する
-            data;
+    char data;
     struct Element *next;
 };
 struct Element *head, *tail;  // キューなのでtail必要
@@ -14,12 +14,33 @@ void Initialize() {
 	head = tail = NULL;
 }
 // 問題１-2　Enque()を参考にして正しく動作するように修正する
-void Enque_char(        x) {
+void Enque_char(char x) {
+    struct Element *p;
+    p = malloc(sizeof(struct Element));
+    p->data = x;
 
+    if (head == NULL){
+        head = p;
+    } else {
+        tail->next = p;
+    }
+
+    tail = p;
+    p->next = NULL;
 }
 // 問題１-3　Deque()を参考にして正しく動作するように修正する
-        Deque_char() {
-
+char Deque_char() {
+    if (head != NULL){
+        char x;
+        struct Element *p;
+        p = head;
+        head = head->next;
+        x = p->data;
+        free(p);
+        return x;
+    } else {
+        return -1;
+    }
 }
 
 void Display() {
@@ -35,27 +56,35 @@ int main() {
 
     // while ((c = getchar()) != EOF) {
     // 問題２-1　文字がEOFの場合、プログラムを終了する
-    while (scanf("%c", &c) !=         ) {
+    while (scanf("%c", &c) != EOF) {
         switch (c) {
             case ' ': // 問題２-2　半角スペースの場合、すべてのデータをデキューして一行で出力する
                 if (head == NULL)
                     printf("QUEUE empty\n");
                 else {
                     printf("Input characters: ");
-                    while (                ) // 取り出しの継続条件
-                        printf(                  );
+                    while (head != NULL) // 取り出しの継続条件
+                        printf("%c", Deque_char());
                     printf("\n");
                 }
                 break; // switch文から抜け出るbreak必要に注意！
             case '\n':  // 問題２-3　改行の場合、何もせずswitch文から抜け出る（設問なし）
                 break;
             default:   // それ以外の文字の場合、エンキューし、キューを表示する
-                
+                Enque_char(c);
                 Display();
                 break;
         }
     }
 
     // 作法としては、free()する
+    if (head == NULL){
+        printf("QUEUE empty\n");
+    }
+
+    while (head != NULL){
+        printf("%c", Deque_char());
+    }
+    printf("\n");
     return 0;
 }
